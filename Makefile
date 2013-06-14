@@ -14,16 +14,16 @@
 
 # Points to the root of Google Test, relative to where this file is.
 # Remember to tweak this if you move this file.
-GTEST_DIR = gtest-1.6.0
+GTEST_DIR = googletest-read-only
 
 # Where to find user code.
 USER_DIR = .
 
 # Flags passed to the preprocessor.
-CPPFLAGS += -I$(GTEST_DIR)/include
+CPPFLAGS += -I$(GTEST_DIR)/include 
 
 # Flags passed to the C++ compiler.
-CXXFLAGS += -g -Wall -Wextra -std=c++11
+CXXFLAGS += -g -Wall -Wextra -stdlib=libc++ -std=c++11
 
 # All tests produced by this Makefile.  Remember to add new tests you
 # created to the list.
