@@ -40,6 +40,14 @@ namespace tottakai {
         const auto length = end - begin + 1;
         return str.substr(begin, length);
     }
+
+    // Searcher for separator in the string and returns the part before it, the separator, and the part after it.
+    std::tuple<std::string, char, std::string> partition(const std::string& str, char separator) {
+        const auto divider = str.find_first_of(separator);
+        if (divider == std::string::npos)
+            return std::make_tuple(std::string(), separator, std::string());
+        return std::make_tuple(str.substr(0,divider), separator, str.substr(divider+1, str.length()-divider));
+    }
 };
 
 #endif
