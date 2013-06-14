@@ -79,6 +79,16 @@ TEST(strip, strip_should_remove_leading_and_trailing_whitespace)
 	EXPECT_EQ("foo", tottakai::strip("\v\t\n\t\v\f\rfoo\t\n\v\f\r"));
 }
 
+TEST(lstrip, whitespace_should_be_stripped_from_the_front)
+{
+	EXPECT_EQ("", tottakai::lstrip(""));
+	EXPECT_EQ("", tottakai::lstrip(" "));
+	EXPECT_EQ("foo", tottakai::lstrip(" foo"));
+	EXPECT_EQ("foo ", tottakai::lstrip("foo "));
+	EXPECT_EQ("foo", tottakai::lstrip("  foo"));
+	EXPECT_EQ("foo foo", tottakai::lstrip(" foo foo"));
+}
+
 TEST(rstrip, whitespace_should_be_stripped_from_the_back)
 {
 	EXPECT_EQ("", tottakai::rstrip(""));

@@ -10,6 +10,16 @@ namespace tottakai {
         }
     }
 
+    // Returns a copy of str with leading whitespace removed.
+    std::string lstrip(const std::string& str) {
+        const auto whitespace = " \t\n\v\f\r";
+        const auto begin = str.find_first_not_of(whitespace);
+        if (begin == std::string::npos)
+            return std::string();
+        const auto length = str.length() - begin;
+        return str.substr(begin, length);
+    }    
+
     // Returns a copy of str with trailing whitespace removed.
     std::string rstrip(const std::string& str) {
         const auto whitespace = " \t\n\v\f\r";
