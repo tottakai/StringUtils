@@ -128,7 +128,30 @@ TEST(rpartition, partition_should_split_string_from_the_end)
 	EXPECT_EQ("bar", std::get<2>(tottakai::rpartition("foo:bar:bar", ':')));
 }
 
-TEST(each_line, one_part_string_should_be_split_single_lambda_call_post)
+TEST(each_line, empty_string_should_not_call_lambda)
+{
+	tottakai::each_line("", [] (const std::string& line) {
+		FAIL();
+	});
+}
+
+TEST(each_line, single_line_should_call_lambda_once)
+{
+	std::string lines;
+	tottakai::each_line("f", [&lines] (const std::string& line) {
+		lines.append("/" + line + "/");
+	});
+	ASSERT_EQ("/f/", lines);
+
+	lines.clear();
+	tottakai::each_line("f\n", [&lines] (const std::string& line) {
+		lines.append("/" + line + "/");
+	});
+	ASSERT_EQ("/f/", lines);
+
+}
+
+TEST(each_line, string_with_new_line_should_be_read_as_two_lines)
 {
 	std::string lines;
 	tottakai::each_line("f\nb", [&lines] (const std::string& line) {
@@ -136,4 +159,3 @@ TEST(each_line, one_part_string_should_be_split_single_lambda_call_post)
 	});
 	ASSERT_EQ("/f//b/", lines);
 }
-

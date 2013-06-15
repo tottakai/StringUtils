@@ -60,10 +60,7 @@ namespace tottakai {
     // Calls func for every line in str
     void each_line(const std::string& str, std::function<void(const std::string&)> func) {
         std::stringstream ss(str);
-        std::string item;
-        while (std::getline(ss, item)) {
-            func(item);
-        }
+        std::for_each(std::istream_iterator<std::string>(ss), std::istream_iterator<std::string>(), func);
     }
 };
 
