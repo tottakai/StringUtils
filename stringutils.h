@@ -49,6 +49,15 @@ namespace tottakai {
         return std::make_tuple(str.substr(0,divider), separator, str.substr(divider+1, str.length()-divider));
     }
 
+    // Searcher for separator in the string from the end of string and returns the part before it, the separator, and the part after it.
+    std::tuple<std::string, char, std::string> rpartition(const std::string& str, char separator) {
+        const auto divider = str.find_last_of(separator);
+        if (divider == std::string::npos)
+            return std::make_tuple(std::string(), separator, std::string());
+        return std::make_tuple(str.substr(0,divider), separator, str.substr(divider+1, str.length()-divider));
+    }
+
+    // Calls func for every line in str
     void each_line(const std::string& str, std::function<void(const std::string&)> func) {
         std::stringstream ss(str);
         std::string item;

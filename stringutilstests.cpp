@@ -98,7 +98,7 @@ TEST(rstrip, whitespace_should_be_stripped_from_the_back)
 	EXPECT_EQ("foo foo", tottakai::rstrip("foo foo "));
 }
 
-TEST(partition, separator_should_split_string)
+TEST(partition, partition_should_split_string)
 {
 	EXPECT_EQ("", std::get<0>(tottakai::partition("", ' ')));
 	EXPECT_EQ(' ', std::get<1>(tottakai::partition("", ' ')));
@@ -111,6 +111,21 @@ TEST(partition, separator_should_split_string)
 	EXPECT_EQ("foo", std::get<0>(tottakai::partition("foo:bar:bar", ':')));
 	EXPECT_EQ(':', std::get<1>(tottakai::partition("foo:bar:bar", ':')));
 	EXPECT_EQ("bar:bar", std::get<2>(tottakai::partition("foo:bar:bar", ':')));
+}
+
+TEST(rpartition, partition_should_split_string_from_the_end)
+{
+	EXPECT_EQ("", std::get<0>(tottakai::rpartition("", ' ')));
+	EXPECT_EQ(' ', std::get<1>(tottakai::rpartition("", ' ')));
+	EXPECT_EQ("", std::get<2>(tottakai::rpartition("", ' ')));
+
+	EXPECT_EQ("foo", std::get<0>(tottakai::rpartition("foo:bar", ':')));
+	EXPECT_EQ(':', std::get<1>(tottakai::rpartition("foo:bar", ':')));
+	EXPECT_EQ("bar", std::get<2>(tottakai::rpartition("foo:bar", ':')));
+
+	EXPECT_EQ("foo:bar", std::get<0>(tottakai::rpartition("foo:bar:bar", ':')));
+	EXPECT_EQ(':', std::get<1>(tottakai::rpartition("foo:bar:bar", ':')));
+	EXPECT_EQ("bar", std::get<2>(tottakai::rpartition("foo:bar:bar", ':')));
 }
 
 TEST(each_line, one_part_string_should_be_split_single_lambda_call_post)
