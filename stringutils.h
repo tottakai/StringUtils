@@ -30,7 +30,7 @@ namespace tottakai {
     }
 
     // Returns a copy of str with leading and trailing whitespace removed
-    std::string strip(const std::string str) {
+    std::string strip(const std::string& str) {
         const auto whitespace = " \t\n\v\f\r";
         const auto begin = str.find_first_not_of(whitespace);
         if (begin == std::string::npos)
