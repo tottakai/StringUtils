@@ -130,7 +130,7 @@ TEST(rpartition, partition_should_split_string_from_the_end)
 
 TEST(each_line, empty_string_should_not_call_lambda)
 {
-	tottakai::each_line("", [] (const std::string& line) {
+	tottakai::each_line("", [] (const std::string&) {
 		FAIL();
 	});
 }
@@ -148,7 +148,6 @@ TEST(each_line, single_line_should_call_lambda_once)
 		lines.append("/" + line + "/");
 	});
 	ASSERT_EQ("/f/", lines);
-
 }
 
 TEST(each_line, string_with_new_line_should_be_read_as_two_lines)
