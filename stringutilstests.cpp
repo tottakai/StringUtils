@@ -112,3 +112,13 @@ TEST(partition, separator_should_split_string)
 	EXPECT_EQ(':', std::get<1>(tottakai::partition("foo:bar:bar", ':')));
 	EXPECT_EQ("bar:bar", std::get<2>(tottakai::partition("foo:bar:bar", ':')));
 }
+
+TEST(each_line, one_part_string_should_be_split_single_lambda_call_post)
+{
+	std::string lines;
+	tottakai::each_line("f\nb", [&lines] (const std::string& line) {
+		lines.append("/" + line + "/");
+	});
+	ASSERT_EQ("/f//b/", lines);
+}
+

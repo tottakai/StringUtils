@@ -48,6 +48,14 @@ namespace tottakai {
             return std::make_tuple(std::string(), separator, std::string());
         return std::make_tuple(str.substr(0,divider), separator, str.substr(divider+1, str.length()-divider));
     }
+
+    void each_line(const std::string& str, std::function<void(const std::string&)> func) {
+        std::stringstream ss(str);
+        std::string item;
+        while (std::getline(ss, item)) {
+            func(item);
+        }
+    }
 };
 
 #endif
