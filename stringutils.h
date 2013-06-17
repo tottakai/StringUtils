@@ -2,8 +2,8 @@
 #define TOTTAKAI_STRINGUTILS_H_
 
 namespace tottakai {
-    void split_map(const std::string& s, char delim, std::function<void(const std::string&)> func) {
-        std::stringstream ss(s);
+    void split_map(const std::string& str, char delim, std::function<void(const std::string&)> func) {
+        std::stringstream ss(str);
         std::string item;
         while (std::getline(ss, item, delim)) {
             func(item);
@@ -60,8 +60,12 @@ namespace tottakai {
     // Calls func for every line in str
     void each_line(const std::string& str, std::function<void(const std::string&)> func) {
         std::stringstream ss(str);
-        std::for_each(std::istream_iterator<std::string>(ss), std::istream_iterator<std::string>(), func);
+        std::string item;
+        while (std::getline(ss, item)) {
+            func(item);
+        }
     }
+
 };
 
 #endif
