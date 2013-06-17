@@ -66,6 +66,10 @@ namespace tottakai {
         }
     }
 
+    // Calls func for each character in str
+    void each_char(const std::string& str, std::function<void(char c)> func) {
+        std::for_each(str.begin(), str.end(), func);
+    }
 };
 
 #endif

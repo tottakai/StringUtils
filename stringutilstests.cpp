@@ -167,3 +167,28 @@ TEST(each_line, string_with_spaces_should_be_a_single_line)
 	});
 	ASSERT_EQ("/foo bar/", lines);
 }
+
+TEST(each_char, empty_string_should_not_call_lambda)
+{
+	tottakai::each_char("", [] (char) {
+		FAIL();
+	});
+}
+
+TEST(each_char, string_should_be_broken_into_chars)
+{
+	std::stringstream ss;
+	tottakai::each_char("foo", [&ss] (char c) {
+		ss << '/' << c << '/';
+	});
+	ASSERT_EQ("/f//o//o/", ss.str());
+}
+
+TEST(each_char, string_with_control_characters_should_be_broken_into_chars)
+{
+	std::stringstream ss;
+	tottakai::each_char("f\no", [&ss] (char c) {
+		ss << '/' << c << '/';
+	});
+	ASSERT_EQ("/f//\n//o/", ss.str());
+}
