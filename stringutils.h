@@ -1,6 +1,12 @@
 #ifndef TOTTAKAI_STRINGUTILS_H_
 #define TOTTAKAI_STRINGUTILS_H_
 
+#include <string>
+#include <functional>
+#include <iterator>
+#include <sstream>
+#include <tuple>
+
 namespace tottakai {
     void split_map(const std::string& str, char delim, std::function<void(const std::string&)> func) {
         std::stringstream ss(str);

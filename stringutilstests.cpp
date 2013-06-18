@@ -159,13 +159,13 @@ TEST(each_line, string_with_new_line_should_be_read_as_two_lines)
 	ASSERT_EQ("/f//b/", lines);
 }
 
-TEST(each_line, string_with_spaces_should_be_a_single_line)
+TEST(each_line, string_with_spaces_should_not_break_line)
 {
 	std::string lines;
-	tottakai::each_line("foo bar", [&lines] (const std::string& line) {
+	tottakai::each_line("foo bar\nskippy dee", [&lines] (const std::string& line) {
 		lines.append("/" + line + "/");
 	});
-	ASSERT_EQ("/foo bar/", lines);
+	ASSERT_EQ("/foo bar//skippy dee/", lines);
 }
 
 TEST(each_char, empty_string_should_not_call_lambda)
